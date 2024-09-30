@@ -323,8 +323,26 @@ define("SALTO", "<br>");
 
     echo "El resultado es: ". (int)$resultado . "<br>";
 
-    $resultado = $n1 == 9 OR $n2 < $n1 AND $n3 > 10;
+    $resultado1 = $n1 == 9 OR $n2 < $n1 AND $n3 > 10;
+    echo "El resultado es: " . (int)$resultado1 . "<br>";
+    
+    $resultado1 = $n1 == 9 OR $n2 < $n1;
+    $resultado = $resultado1 AND $n3 > 10;
+    $resultado = ($n1 == 9 OR $n2 < $n1) ? "True": "False";
+    $resultado = ($resultado1 AND $n3 > 10) ? "True": "False";
+
     echo "El resultado es: " . (int)$resultado . "<br>";
-?>
+
+    $n1 = 9;
+    $n2 = 5;
+    $n3 = 10;
+    $resultado = $n1 == 9 || $n2 < $n1 AND $n3 > 10;
+    echo "El resultado es: " . (int)$resultado . "<br>";
+
+    $resultado = $n1 + 5 / $n3 < $n1 ** 3 AND $n3 / 5 + $n2 * 2 >= $n1 * $n2 /$n3 OR
+            $n1 - 3 % 2 == $n3 - 7;
+
+    echo "El resultado de la expresion grande es: " . (int)$resultado . "<br>";
+ ?>
 
 </html>
