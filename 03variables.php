@@ -315,8 +315,16 @@ define("SALTO", "<br>");
     // &&      And lógico con mayor precedencia
     // ||      Or lógico con mayor precedencia
 
+    $n1 = 9;
+    $n2 = 5;
+    $n3 = 10;
+    $resultado = $n1 == $n2 OR $n2 > $n3;
+    $resultado = $n1 == $n2 AND $n2 < $n3;
 
+    echo "El resultado es: ". (int)$resultado . "<br>";
 
+    $resultado = $n1 == 9 OR $n2 < $n1 AND $n3 > 10;
+    echo "El resultado es: " . (int)$resultado . "<br>";
 ?>
 
 </html>
