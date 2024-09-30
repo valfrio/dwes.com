@@ -228,11 +228,94 @@ define("SALTO", "<br>");
     $numero *= 3; // equivale a $numero = $numero * 3;
     echo "El numero es $numero<br>";
 
-    $numero += 5; // equivale a $numero = $numero + 5;
+    $numero %= 7; // equivale a $numero = $numero % 7;
     echo "El numero es $numero<br>";
 
-    $numero += 5; // equivale a $numero = $numero + 5;
+    $numero /= 5; // equivale a $numero = $numero / 5;
     echo "El numero es $numero<br>";
+?>
+
+    <h2>Operadores relacionales</h2>
+<?php
+
+    /*
+        == Igual a
+        === Idéntico a
+        != Distinto
+        !== Distinto valor o distinto tipo
+        > Mayor que
+        < Menor que
+        >= Mayor o igual
+        <= Menor o igual
+        <=> Nave espacial
+    */
+
+    $n1 = 5;
+    $cadena = "5";
+    $n2 = 8;
+
+    $resultado = $n1 == $n2;
+    echo "Es n1 igual a que n2: " . (int)$resultado . SALTO;
+
+    $resultado = $n1 == $cadena;  // Dado que lso operadores relacionales tienen que comparar cosas del mismo tipo. POr ello convierte implicitamente a uno de los dos, al tipo del primo que aparezca en la expresion
+    echo "Es n1 igual a que cadena: " . (int)$resultado . SALTO;
+
+    // Operador ===. Es True su los valores de los operandos son iguales y del mismo tipo
+    $resultado = $n1 === $cadena;
+    echo "Es n1 igual a que cadena: " . (int)$resultado . SALTO;
+
+
+    // Operador !== . Es True si son distintos o de diferente tipo, falso en caso contrario
+    $resultado = $n1 != $cadena;
+    echo "Es n1 distinto de cadena: " .  (int)$resultado . SALTO;
+
+    $resultado = $n1 !== $cadena;
+    echo "Es n1 distinto de cadena: " .  (int)$resultado . SALTO;
+
+    // Nave espacial
+    // Si n1 es mayor que n2 -> 1
+    // Si n1 es igual que n2 -> 0
+    // si n1 es menor que n2 -> -1
+    // Se emplea para evitar esto:
+    // if( $n1 < $n2 ) {
+    // 
+    // elsif ($n1 == $n2)
+    // 
+    // else {
+    //
+    // }
+
+    $resultado = $n1 <=> $n2;
+    echo "Es n1 menor, igual o mayor que n2: $resultado<br>";
+
+    $nombre1 = "abcZacarias";
+    $nombre2 = "abcadela";
+    $resultado = $nombre1 > $nombre2;  // Se comparan por orden de ASCII caracter a caracter
+    echo "El resultado es " . (int)$resultado . "<br>";
+
+
+    $nombre1 = "MariO";
+    $nombre2 = "Maria";
+    $resultado = $nombre1 < $nombre2;
+    echo "El resultado es " . (int)$resultado . "<br>";
+
+    $nombre1 = "maria";
+    $nombre2 = "Maria";
+    $resultado = $nombre1 === strtolower($nombre2);
+    echo "El resultado es " . (int)$resultado . "<br>";
+?>
+
+    <h2>Operadores lógicos</h2>
+
+<?php
+    // AND      And lógico o conjunción lógica
+    // OR      Or lógico o disyunción lógica
+    // XOR     Or exclusico
+    // !       not 
+    // &&      And lógico con mayor precedencia
+    // ||      Or lógico con mayor precedencia
+
+
 
 ?>
 
