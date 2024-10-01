@@ -1,6 +1,9 @@
 <?php
 define("SALTO", "<br>");
 ?>
+<?php
+define("PI", "3.14159");
+?>
 <!DOCTYPE html>
 <html lant='es'>
     <head>
@@ -214,7 +217,7 @@ define("SALTO", "<br>");
     $resultado = $n1 == 9 || $n2 < $n1 AND $n3 > 10;
     echo "El resultado es: " . (int)$resultado . "<br>";
 
-    $resultado = $n1 + 5 / $n3 < $n1 ** 3 AND $n3 / 5 + $n2 * 2 >= $n1 * $n2 /$n3 OR
+    $resultado = $n1 + 5 / $n3 < $n1 ** 3 && $n3 / 5 + $n2 * 2 >= $n1 * $n2 /$n3 ||
             $n1 - 3 % 2 == $n3 - 7;
 
     echo "El resultado de la expresion grande es: " . (int)$resultado . "<br>";
