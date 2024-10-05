@@ -11,7 +11,7 @@
     $altura = 5.3;
     $peso = 1000;
     $icm = $peso / ($altura ** 2);
-    printf("Con una altura de %a y un peso de %p, el imc es de %.2f", $altura, $peso, $icm);
+    echo "Con una altura de $altura y un peso de $peso, el imc es de " . round($icm, 2);
 ?>
 
     
