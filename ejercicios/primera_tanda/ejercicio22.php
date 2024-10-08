@@ -17,7 +17,7 @@
     $num_crios = 3;
 
     // Un kilo son 1000 gramos
-    $peso_total_personas_kg = ($PESO_ADULTOS_KG + $PESO_CRIOS_KG)  * 1000;
+    $peso_total_personas_kg = ($PESO_ADULTOS_KG * $num_adultos + $PESO_CRIOS_KG * $num_crios)  * 1000;
     $peso_total_personas_libras = $peso_total_personas_kg * $CAMBIO_GRAMOS_LIBRAS;
     echo $peso_total_personas_libras < $PESOMAX_GLOBO_LIBRAS ? "Pueden ir en un solo viaje" : "Deben separarse en dos grupos";
 
