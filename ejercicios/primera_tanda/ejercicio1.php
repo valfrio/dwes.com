@@ -8,13 +8,14 @@
 <body>
 <?php
     $distancia_sol = 15e8;
-    printf("La disntacia al sol es: %3.0f<br>", $distancia_sol);
+    printf("La distancia al sol es: %3.2e<br>", $distancia_sol);
 
     $distancia_pluton_sol = 5.9064e9;
-    echo "La disntacia al sol es: $distancia_pluton_sol<br>";
+    printf("La distancia al sol es: %3.2e<br>", $distancia_pluton_sol);
 
     $diametro_sol = 13927e6;
-    echo "La disntacia al sol es: $diametro_sol<br>";
+    printf("El diametro del sol es: %3.2e<br>", $diametro_sol);
+
 
 
 ?>
