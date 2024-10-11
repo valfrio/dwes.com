@@ -86,7 +86,9 @@ $notas = [
 
     foreach($trimestres as $trimestre){
         echo "<td>Nota $trimestre</td>";
+        echo "<td>Nota mínima $trimestre</td>";
     }
+
 
     echo "</tr>";
 
@@ -105,7 +107,11 @@ $notas = [
                 echo "<li>Nota media: " . nota_media($notas, $persona, $trimestre, $examenes) . "</li>";
                 echo "</ul>";
                 echo "</td>";
+
+                echo "<td>" . min($notas[$persona][$trimestre]) . "</td>";
             }
+
+            
 
             
             
