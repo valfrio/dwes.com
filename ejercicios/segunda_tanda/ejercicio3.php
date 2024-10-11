@@ -6,8 +6,8 @@ inicio_html("Ejercicio 3",
         ["/styles/general.css"]);
 
 $array = [];
-$FILAS = 3;
-$COLUMNAS = 4;
+$FILAS = 50;
+$COLUMNAS = 50;
 
 
 
