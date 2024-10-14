@@ -5,18 +5,18 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/inicio_y_fin.php');
 inicio_html('Ejercicio 8', ['/styles/general.css']);
 
 $num= [];
-for($i = 1; $i <= 20000; $i++){
-    $array1[] = random_int(1, 100);
+for($i = 1; $i <= 10; $i++){
+    
+    for($j = 1; $j <= 20; $j++){
+        
+        $num[] = random_int(1, 100);
 
-    // for($j = 1; $j <= 20; $j++){
-
-
-    // }
+    }
 }
 
 $num_buscado = random_int(1, 100);
-
 $clave_num_buscado = array_search($num_buscado, $num);
+
 
 if ($clave_num_buscado == false ){
     echo "No se encontró :(";
