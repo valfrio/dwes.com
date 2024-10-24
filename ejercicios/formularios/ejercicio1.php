@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/inicio_y_fin.php');
 
-inicio_html('Ejercicio 1', ['/styles/forumalrio.css', '/styles/general.css']);
+inicio_html('Ejercicio 1', ['/styles/formulario.css', '/styles/general.css']);
 
 if( $_SERVER['REQUEST_METHOD'] == 'GET'){?>
 
@@ -22,7 +22,7 @@ else{
     
     // function is_natural_number($numero_decimal){
         
-    //     $regex_pattern = "\d*6";
+    //     $regex_pattern = "\d{6}";
     //     $is_number = preg_match($regex_pattern, $numero_decimal);
 
 
