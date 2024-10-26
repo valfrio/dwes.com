@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/inicio_y_fin.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . "/includes/inicio_y_fin.php");
 
 inicio_html('Ejercicio 2', ['/styles/formulario.css', '/styles/general.css']);
 
@@ -103,9 +103,10 @@ else{
             'genero'    => 'Fantasía'
         ]
     ];
-    $autores_validos = ['George R.R. Martin', 'Steve Jacobson', 'Carl Sagan', 'Isaac Asimov', 'Ken Follet', 'Max Hastings'];
+    $autores_validos = ['GM', 'SJ', 'CS', 'IA', 'KF', 'MH'];
     $titulos_validos = ['Los pilares de la tierra', 'La caída de los gigantes', 'La guerra de Churchill', 'Fundación', 'Yo, robot', 'Cosmos',
                         'La diversidad de la ciencia', 'Jobs', 'Juego de tronos', 'Sueño de primavera'];
+    $generos_validos = ['NH', "DC", "B" , "F"];
 
     function isbn_check($isbn){
         $isbn_format = '/^\d{3}-\d-\d{5}-\d{3}-\d$/';
@@ -122,12 +123,10 @@ else{
 
     <table border="1">
         <th>
-            <tr>
                 <td>ISBN</td>
                 <td>Autor</td>
                 <td>Título</td>
                 <td>Género</td>
-            </tr>
         </th>
         <tbody>
 
@@ -150,7 +149,7 @@ else{
     $datos_saneados = filter_input_array(INPUT_POST, $opciones_filtrado);
 
     if( isbn_check($datos_saneados['isbn']) ){
-        $isbn_validado = $isbn_saneado;
+        $isbn_validado = $datos_saneados['isbn'];
     }
     
     if( isset($datos_saneados['titulo']) ){
@@ -158,13 +157,16 @@ else{
             $titulo_validado = $datos_saneados['titulo'];
     }
 
+    $autores_validados = [];
     if( isset($datos_saneados['autor']) ){
         foreach($datos_saneados['autor'] as $autor){
             if( in_array($autor, $autores_validos) ){
                 $autores_validados[] = $autor;
         }
     }
-
+    echo implode(' ',$autores_validados);
+    
+    $generos_validados = [];
     if( isset($datos_saneados['genero']) ){
         foreach($datos_saneados['genero'] as $genero){
             if( in_array($genero, $generos_validos) ){
@@ -204,7 +206,6 @@ else{
     }
 
     foreach($isbn_finales as $isbn){
-
 ?>
 
 
