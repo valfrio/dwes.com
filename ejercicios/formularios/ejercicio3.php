@@ -1,14 +1,14 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/includes/inicio_y_fin.php');
 
-inicio_html('Ejercicio 3', ['/styles/formulario.css', '/styles/general.css']);
+inicio_html('Ejercicio 3', ['/styles/formulario.css', '/styles/general.css', '/styles/tablas.css']);
 
-if( $_SERVER['REQUEST_METHOD'] == 'GET'){?>
+if ($_SERVER['REQUEST_METHOD'] == 'GET') { ?>
 
-    <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+    <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
         <fieldset>
             <legend>Pizzas</legend>
-            
+
             <label for="nombre">Nombre</label>
             <input id="nombre" name="nombre" type="text" size="30" required>
 
@@ -25,7 +25,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'GET'){?>
             </div>
 
             <label for="ingredientesveg">Ingredientes Veg</label>
-            <select id="igredienteveg" name="ingredientesveg[]" multiple>
+            <select id="ingredienteveg" name="ingredientesveg[]" multiple>
                 <option value="pe">Pepino-1€</option>
                 <option value="ca">Calabacín-1.5€</option>
                 <option value="pive">Pimiento Verde-1.25€</option>
@@ -35,8 +35,8 @@ if( $_SERVER['REQUEST_METHOD'] == 'GET'){?>
                 <option value="ce">Cebolla-1€</option>
             </select>
 
-            <label for="igredientesnoveg">Igredientes No Veg</label>
-            <select name="igredientesnoveg[]" id="igredientesnoveg" multiple>
+            <label for="ingredientesnoveg">Ingredientes No Veg</label>
+            <select name="ingredientesnoveg[]" id="ingredientesnoveg" multiple>
                 <option value="at">Atún-2€</option>
                 <option value="capi">Carne picada-2.5€</option>
                 <option value="pe">Peperoni-1.75€</option>
@@ -61,237 +61,238 @@ if( $_SERVER['REQUEST_METHOD'] == 'GET'){?>
     </form>
 
 <?php
-}
+} else {
 
-$opciones_saneammiento = [
-    
-    'nombre'            =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    'direccion'         =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    'telefono'          =>  FILTER_SANITIZE_NUMBER_INT,
-    'tipo'              =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    'ingredientesveg'   =>  [
-                            'filter'    =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-                            'flags'     =>  FILTER_REQUIRE_ARRAY
-                            ],
-    'ingredientesnoveg' =>  [
-                            'filter'    =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-                            'flags'     =>  FILTER_REQUIRE_ARRAY
-                            ],
-    'extraqueso'        =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    'bordesrellenos'    =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-    'numpizza'          =>  FILTER_SANITIZE_NUMBER_INT
+    $opciones_saneamiento = [
 
-];
+        'nombre'            =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'direccion'         =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'telefono'          =>  FILTER_SANITIZE_NUMBER_INT,
+        'tipo'              =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'ingredientesveg'   =>  [
+            'filter'    =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+            'flags'     =>  FILTER_REQUIRE_ARRAY
+        ],
+        'ingredientesnoveg'  =>  [
+            'filter'    =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+            'flags'     =>  FILTER_REQUIRE_ARRAY
+        ],
+        'extraqueso'        =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'bordesrrellenos'    =>  FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+        'numpizza'          =>  FILTER_SANITIZE_NUMBER_INT
 
-$datos_saneado = filter_input_array(INPUT_POST, $opciones_saneammiento);
+    ];
 
-$ingredientes_veg = [
-    "pe"    =>  [
-        'nombre'    =>      'Pepino',
-        'precio'    =>      1
-    ],
+    $datos_saneado = filter_input_array(INPUT_POST, $opciones_saneamiento);
 
-    "ca"    =>  [
-        'nombre'    =>      'Calabacín',
-        'precio'    =>      1.5
-    ],
+    $ingredientes_veg = [
+        "pe"    =>  [
+            'nombre'    =>      'Pepino',
+            'precio'    =>      1
+        ],
 
-    "pive"  =>  [
-        'nombre'    =>      'Pimiento Verde',
-        'precio'    =>      1.25
-    ],
+        "ca"    =>  [
+            'nombre'    =>      'Calabacín',
+            'precio'    =>      1.5
+        ],
 
-    "piro"  =>  [
-        'nombre'    =>      'Pimineto Rojo',
-        'precio'    =>      1.75
-    ],
+        "pive"  =>  [
+            'nombre'    =>      'Pimiento Verde',
+            'precio'    =>      1.25
+        ],
 
-    "to"    =>  [
-        'nombre'    =>      "Tomate",
-        'precio'    =>      1.5
-    ],
+        "piro"  =>  [
+            'nombre'    =>      'Pimineto Rojo',
+            'precio'    =>      1.75
+        ],
 
-    "ac"    =>  [
-        'nombre'    =>      'Aceitunas',
-        'precio'    =>      3
-    ],
+        "to"    =>  [
+            'nombre'    =>      "Tomate",
+            'precio'    =>      1.5
+        ],
 
-    "ce"    =>  [
-        'nombre'    =>      'Cebolla',
-        'precio'    =>      1
-    ]
-];
+        "ac"    =>  [
+            'nombre'    =>      'Aceitunas',
+            'precio'    =>      3
+        ],
 
-
-
-$ingredientes_no_veg = [
-    "at"        =>  [
-        'nombre'    =>      'Atún',
-        'precio'    =>      2
-    ],
-
-    "capi"      =>  [
-        'nombre'    =>      'Carne picada',
-        'precio'    =>      2.5
-    ],
-
-    "pe"        =>  [
-        'nombre'    =>      'Peperoni',
-        'precio'    =>      1.75
-    ],
-
-    "mo"        =>  [
-        'nombre'    =>      "Morcilla",
-        'precio'    =>      2.25
-    ],
-
-    "an"        =>  [
-        'nombre'    =>      "Anchoas",
-        'precio'    =>      1.5
-    ],
-
-    "sa"        =>  [
-        "nombre"    =>      "Salmón",
-        'precio'    =>      3
-    ],
-
-    "ga"        =>  [
-        "nombre"    =>      "Gambas",
-        'precio'    =>      4
-    ],
-
-    "la"        =>  [
-        "nombre"    =>      "Langostinos",
-        'precio'    =>      4
-    ],
-
-    "me"        =>  [
-        "nombre"    =>      "Mejillones",
-        'precio'    =>      2
-    ]
-];
+        "ce"    =>  [
+            'nombre'    =>      'Cebolla',
+            'precio'    =>      1
+        ]
+    ];
 
 
 
-$num_pizza = filter_input(INPUT_POST, 'numpizza', FILTER_VALIDATE_INT,
-                                                                    array(
-                                                                        'options'   =>  ['min_range' => 1, 'max_range' => 5],
-                                                                        'flags'     =>  FILTER_NULL_ON_FAILURE
-                                                                    ));
-$num_telf_regex = '/^[6-9]\d{8}$/';
-$num_telf = preg_match($num_telf_regex, $datos_saneado['telefono']);
+    $ingredientes_no_veg = [
+        "at"        =>  [
+            'nombre'    =>      'Atún',
+            'precio'    =>      2
+        ],
+
+        "capi"      =>  [
+            'nombre'    =>      'Carne picada',
+            'precio'    =>      2.5
+        ],
+
+        "pe"        =>  [
+            'nombre'    =>      'Peperoni',
+            'precio'    =>      1.75
+        ],
+
+        "mo"        =>  [
+            'nombre'    =>      "Morcilla",
+            'precio'    =>      2.25
+        ],
+
+        "an"        =>  [
+            'nombre'    =>      "Anchoas",
+            'precio'    =>      1.5
+        ],
+
+        "sa"        =>  [
+            "nombre"    =>      "Salmón",
+            'precio'    =>      3
+        ],
+
+        "ga"        =>  [
+            "nombre"    =>      "Gambas",
+            'precio'    =>      4
+        ],
+
+        "la"        =>  [
+            "nombre"    =>      "Langostinos",
+            'precio'    =>      4
+        ],
+
+        "me"        =>  [
+            "nombre"    =>      "Mejillones",
+            'precio'    =>      2
+        ]
+    ];
+
+    $nombre = $datos_saneado['nombre'];
+    $direccion = $datos_saneado['direccion'];
+
+    $num_pizza = filter_input(
+        INPUT_POST,
+        'numpizza',
+        FILTER_VALIDATE_INT,
+        array(
+            'options'   =>  ['min_range' => 1, 'max_range' => 5],
+            'flags'     =>  FILTER_NULL_ON_FAILURE
+        )
+    );
+    $num_telf_regex = '/^[6-9]\d{8}$/';
+    $telf_valido = preg_match($num_telf_regex, $datos_saneado['telefono']);
+    if($telf_valido) $num_telf = $datos_saneado['telefono'];
 
 
-$todo_ok = true;
+    $todo_ok = true;
 
-if( !$num_pizza ){
-    $todo_ok = false;
-}
-elseif( !$num_telf ){
-    $todo_ok = false;
-}
-elseif( $datos_saneado['extraqueso'] != 'on' || $datos_saneado['extraqueso'] != 'off' ){
-    $todo_ok = false;
-}
-elseif( $datos_saneado['bordesrrellenos'] != 'on' || $datos_saneado['bordesrrellenos'] != 'off' ){
-    $todo_ok = false;
-}
-elseif( $datos_saneado['tipo'] != 'veg' || $datos_saneado['tipo'] != 'noveg' ){
-    $todo_ok = false;
-};
+    if (!$num_pizza) {
+        $todo_ok = false;
+    } elseif (!$num_telf) {
+        $todo_ok = false;
+    } elseif ( !($datos_saneado['extraqueso'] == 'on' || $datos_saneado['extraqueso'] == 'off') ) {
+        $todo_ok = false;
+    } elseif ( !($datos_saneado['bordesrrellenos'] == 'on' || $datos_saneado['bordesrrellenos'] == 'off') ) {
+        $todo_ok = false;
+    } elseif ( !($datos_saneado['tipo'] == 'veg' || $datos_saneado['tipo'] == 'noveg') ) {
+        $todo_ok = false;
+    };
 
-    
-$tipo_pizza = $datos_saneado['tipo'];
 
-if( $tipo_pizza == 'veg'){
-    
-    foreach( $datos_saneado['igredientesveg'] as $igrediente ){
-        if( !key_exists($igrediente, $ingredientesx_veg) ){
-            $todo_ok = false;
+    $tipo_pizza = $datos_saneado['tipo'];
+
+    if ($tipo_pizza == 'veg') {
+
+        foreach ($datos_saneado['ingredientesveg'] as $ingrediente) {
+            if (!key_exists($ingrediente, $ingredientes_veg)) {
+                $todo_ok = false;
+            }
+        }
+        $ingredientes = $datos_saneado['ingredientesveg'];
+    } else {
+
+        foreach ($datos_saneado['ingredientesnoveg'] as $ingrediente) {
+            if (!key_exists($ingrediente, $ingredientes_no_veg)) {
+                $todo_ok = false;
+            }
         }
     }
-    $igredientes = $datos_saneado['igredientesveg'];
-}
-else{
 
-    foreach( $datos_saneado['igredientesnoveg'] as $igrediente ){
-        if( !key_exists($igrediente, $ingredientes_no_veg) ){
-            $todo_ok = false;
-        }
+    if (!$todo_ok) {
+        echo "<h2>Alguno de los datos introducidos no está bien, vuelve rellenar el formulario.</h2>";
+        exit(1);
     }
 
-}
+    $bordes_rellenos = $datos_saneado['bordesrrellenos'] == 'on' ? true : false;
+    $extra_queso = $datos_saneado['extraqueso'] == 'on' ? true : false;
 
-if( !$todo_ok ){
-    echo "<h2>Alguno de los datos introducidos no está bien, vuelve rellenar el formulario.</h2>";
-    exit(1);
-}
+    $PRECIO_BASE = 5;
+    $PRECIO_VEG = 2;
+    $PRECIO_NO_VEG = 3;
 
-$bordes_rellenos = $datos_saneado['bordesrrellenos'] == 'on' ? true : false;
-$extra_queso = $datos_saneado['extraqueso'] == 'on' ? true : false;
+    $precio_total = $PRECIO_BASE;
 
-$PRECIO_BASE = 5;
-$PRECIO_VEG = 2;
-$PRECIO_NO_VEG = 3;
-
-$precio_total = $PRECIO_BASE;
-
-if( $tipo_pizza == 'veg'){
-    $ingredientes = $datos_saneado['igredientesveg'];
-    $listado_ingredientes_seleccionado = $ingredientes_veg;
-    $precio_total += $PRECIO_VEG;
-}
-else{
-    $ingredientes = $datos_saneado['igredientesnoveg'];
-    $listado_ingredientes_seleccionado = $ingredientes_no_veg;
-    $precio_total += $PRECIO_NO_VEG;
-
-}
+    if ($tipo_pizza == 'veg') {
+        $ingredientes = $datos_saneado['ingredientesveg'];
+        $listado_ingredientes_seleccionado = $ingredientes_veg;
+        $precio_total += $PRECIO_VEG;
+    } else {
+        $ingredientes = $datos_saneado['ingredientesnoveg'];
+        $listado_ingredientes_seleccionado = $ingredientes_no_veg;
+        $precio_total += $PRECIO_NO_VEG;
+    }
 
 ?>
+    <p><h1>Datos de contacto</h1></p>
+    <p>Nombre: <?=$nombre?></p>
+    <p>Dirección: <?=$direccion?></p>
+    <p>Teléfono: <?=$num_telf?></p>
+    <table>
+        <tbody>
+            <thead>
+                <td>Ingredientes</td>
+                <td>Precio</td>
+            </thead>
+            <tr>
+                <td>Base de tomtate y queso</td>
+                <td><?= $PRECIO_BASE ?></td>
+            </tr>
+            <tr>
+                <td>Pizza tipo <?= $tipo_pizza ?></td>
+                <td><?= $tipo_pizza == 'veg' ? $PRECIO_VEG : $PRECIO_NO_VEG ?></td>
+            </tr>
 
-<table>
-    <tbody>
-        <thead>
-            <td>Ingredientes</td>
-            <td>Precio</td>
-        </thead>
-        <tr>
-            <td>Base de tomtate y queso</td>
-            <td><?=$PRECIO_BASE?></td>
-        </tr>
-        <tr>
-            <td>Pizza tipo <?=$tipo_pizza?></td>
-            <td><?=$tipo_pizza == 'veg' ? $PRECIO_VEG : $PRECIO_NO_VEG?></td>
-        </tr>
-    
 
 
 <?php
 
-
-
-    
-    
-foreach($ingredientes as $igrediente){
-        echo "<tr>";
-        echo "<td>$ingrediente</td>";
-        echo "<td>{$listado_ingredientes_seleccionado[$ingrediente]['precio']}</td>";
-        echo "</tr>";
-        $precio_total += $listado_ingredientes_seleccionado[$ingrediente]['precio'];
-}
-
+            foreach ($ingredientes as $ingrediente) {
+                echo "<tr>";
+                echo "<td>{$listado_ingredientes_seleccionado[$ingrediente]['nombre']}</td>";
+                echo "<td>{$listado_ingredientes_seleccionado[$ingrediente]['precio']}</td>";
+                echo "</tr>";
+                $precio_total += $listado_ingredientes_seleccionado[$ingrediente]['precio'];
+            }
+            $precio_total *= $num_pizza
 
 ?>
-        <tr>
-            <td style="font-weight: bold;">Precio total</td>
-            <td style="font-weight: bold;"><?=$precio_total?></td>
-        </tr>
-    </tbody>
-</table>
+            <tr>
+                <td>Número de pizzas</td>
+                <td><?=$num_pizza?></td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Precio total</td>
+                <td style="font-weight: bold;"><?= $precio_total?></td>
+            </tr>
+        </tbody>
+    </table>
 
 <?php
-
+}
 fin_html();
 
 ?>
