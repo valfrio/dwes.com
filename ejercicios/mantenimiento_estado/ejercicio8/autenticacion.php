@@ -1,11 +1,10 @@
 <?php
-
 require_once($_SERVER['DOCUMENT_ROOT'] . '/dwes.com/includes/inicio_y_fin.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/dwes.com/ejercicios/mantenimiento_estado/ejercicio8/includes_ej8.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/dwes.com/includes/jwt_include.php');
 
 
-inicio_html('Ejercicio 8', ['/styles/formulario.css', '/styles/general.css']);
+inicio_html('Ejercicio 8', ['/dwes.com/styles/formulario.css', '/dwes.com/styles/general.css']);
 
 session_start();
 
@@ -25,7 +24,7 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_COOKIE['token'])){
     $jwt = generar_token($datos_usuario);
     setcookie("token", $jwt, time() + 2 * 60 * 60);
 
-    echo "<h2>Autenticación completada, beinvenid@</h2>";
+    echo "<h2>Autenticación completada, bienvenid@</h2>";
     echo "<p><a href='/dwes.com/ejercicios/mantenimiento_estado/ejercicio8/introducir_comentario.php'>Link a la pantalla de introducción de comentario</a></p>";
 
 }

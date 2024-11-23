@@ -16,4 +16,14 @@ function autenticar($usuario, $contraseña){
     }
 }
 
+function cerrar_sesion(){
+    $nombre_sesison = session_name();
+    $cookie_params = session_get_cookie_params();
+
+    setcookie($nombre_sesison, "", time() - 1000000, $cookie_params['path'], $cookie_params['domain'],
+              $cookie_params['secure'], $cookie_params['httponly']);
+    session_unset();
+    session_destroy();
+}
+
 ?>
