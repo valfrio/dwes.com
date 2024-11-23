@@ -7,7 +7,7 @@ session_start();
 
 ?>
 
-<form action="/ejercicios/mantenimiento_estado/ejercicio8/introducir_comentario.php" method="post">
+<form action="/dwes.com/ejercicios/mantenimiento_estado/ejercicio8/autenticacion.php" method="post">
     <fieldset>
         <legend>Inicio de sesión</legend>
 
@@ -17,7 +17,7 @@ session_start();
         <label for="contraseña">Contraseña</label>
         <input type="password" name="contraseña" id="contraseña">
     </fieldset>
-    <input type="button" value="envio">
+    <input type="submit" value="envio">
 </form>
 
 <?php
