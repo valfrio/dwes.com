@@ -12,9 +12,30 @@ if( $_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_COOKIE['token']) ){
     $correo = filter_var($correo_saneado, FILTER_VALIDATE_EMAIL);
     $contraseña = $_POST['contraseña'];
 
-    if(  ){
-        
+    if( autenticar($correo, $contraseña) ){
+        $datos_usuario = ['correo'  => $correo];
+        $jwt = generar_token($datos_usuario);
+        setcookie('token', $jwt, time() + 30 * 60);
     }
+
+    header('Location: /dwes.com/ejercicios/mantenimiento_estado/ejercicio6/carrito.php');
+}
+else{?>
+
+    <form action="<?=$_SERVER['PHP_SELF']?>" method="post">
+        <fieldset>
+            <legend>Autenticación</legend>
+
+            <label for="correo">Correo</label>
+            <input type="email" name="correo">
+
+            <label for="contraseña">Contraseña</label>
+            <input type="password" name="contraseña">
+        </fieldset>
+        <input type="submit" name="autenticar">
+    </form>
+
+<?php
 }
 
 fin_html();

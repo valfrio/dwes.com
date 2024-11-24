@@ -7,7 +7,7 @@ inicio_html('Ejercicio 6', ['/dwes.com/styles/formulario.css', '/dwes.com/styles
 session_start();
 ob_start();
 
-if( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == "/dwes.com/ejercicios/mantenimiento_estado/ejercicio6/autenticacion.php" ){
+if( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == "/dwes.com/ejercicios/mantenimiento_estado/ejercicio6/autenticacion.php" && !isset($_COOKIE['token']) ){
     echo "<h2>ERROR EN LA AUTENTICACÓN</h2>";
 }
 
