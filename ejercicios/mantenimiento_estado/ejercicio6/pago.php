@@ -11,7 +11,7 @@ session_start();
 if( !isset($_SESSION['articulos'])){
     header('Location: /dwes.com/ejercicios/mantenimiento_estado/ejercicio6/carrito.php');
 }
-elseif( verificar_token($_COOKIE['token']) ){
+elseif( !verificar_token($_COOKIE['token']) || !isset($_COOKIE['token']) ){
     header('Location: /dwes.com/ejercicios/mantenimiento_estado/ejercicio6/autenticacion.php');
 }
 
@@ -32,20 +32,26 @@ $precio_total = 0;
 foreach( $_SESSION['articulos'] as $articulo_comprado ){
     echo "<tr>";
     $nombre_articulo = $articulos[$articulo_comprado['articulo']]['descripcion'];
+    $precio_articulo = $articulos[$articulo_comprado['articulo']]['precio'];
+
     echo "<td>$nombre_articulo</td>";
     echo "<td>{$articulo_comprado['cantidad']}</td>";
-    echo "<td>{$articulo_comprado['precio']}$ x {$articulo_comprado['cantidad']}</td>";
+    echo "<td>{$precio_articulo}$ x {$articulo_comprado['cantidad']}</td>";
     echo "</tr>";
 
-    $precio_articulo = $articulo_comprado['precio'] * $articulo_comprado['cantidad'];
+    $precio_articulo = $precio_articulo * $articulo_comprado['cantidad'];
     $precio_total += $precio_articulo;
 }
+echo "<tr>";
+echo "<td>Precio final</td>";
+echo "<td>$precio_total</td>";
+echo "</tr>";
 echo "</tbody>";
 echo "</table>";
 
     ?>
 
-    <form action="/dwes.com/ejercicios/mantenimiento_estado/ejercicio6/autenticacion.php" method="post">
+    <form action="/dwes.com/ejercicios/mantenimiento_estado/ejercicio6/final.php" method="post">
         <fieldset>
             <legend>Datos para la compra</legend>
             

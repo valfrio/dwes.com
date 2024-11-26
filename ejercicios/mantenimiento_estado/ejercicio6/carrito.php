@@ -1,17 +1,19 @@
 <?php
 
+session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . "/dwes.com/includes/inicio_y_fin.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/dwes.com/ejercicios/mantenimiento_estado/ejercicio6/articulos_carrito.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/dwes.com/includes/jwt_include.php");
+
 
 inicio_html('Ejercicio 6', ['/dwes.com/styles/formulario.css', '/dwes.com/styles/general.css', '/dwes.com/styles/tablas.css']);
-session_start();
 ob_start();
 
 if( $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == "/dwes.com/ejercicios/mantenimiento_estado/ejercicio6/autenticacion.php" && !isset($_COOKIE['token']) ){
     echo "<h2>ERROR EN LA AUTENTICACÓN</h2>";
 }
 
-if( $_SERVER['REQUEST_METHOD'] == "POST" ){
+if( $_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == 'GET' && isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] == "/dwes.com/ejercicios/mantenimiento_estado/ejercicio6/autenticacion.php" ){
 
     $articulo_seleccionado = array_key_exists($_POST['articulo'], $articulos) ? $_POST['articulo'] : null;
     $cantidad_saneada = filter_input(INPUT_POST, 'cantidad', FILTER_SANITIZE_NUMBER_INT);
@@ -45,7 +47,7 @@ foreach( $_SESSION['articulos'] as $articulo_comprado ){
 
 if( isset($_COOKIE['token']) && verificar_token($_COOKIE['token']) ){
     $payload = verificar_token($_COOKIE['token']);
-    echo "{$payload['correo']}";
+    echo "<h2>Correo: {$payload['correo']}</h2>";
 }
 elseif( isset($_COOKIE['token']) && !verificar_token($_COOKIE['token']) ){
     header('Location: /dwes.com/ejercicios/mantenimiento_estado/ejercicio6/autenticacion.php');
